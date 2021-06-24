@@ -18,5 +18,10 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('/api/user','UsuariosController@index');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', ['as'=>'home','uses'=>'HomeController@index']);
+
+Route::get('/api/conversacion',['as'=>'conversacion.index','uses'=>'ConversacionController@index']);
+Route::get('/api/mensajes',['as'=>'mensages.index','uses'=>'MensagesController@index']);
+Route::post('/api/mensajes',['as'=>'mensages.store','uses'=>'MensagesController@store']);

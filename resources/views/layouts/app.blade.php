@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-100">
 
 <head>
     <meta charset="utf-8">
@@ -11,8 +11,11 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
 
-<body>
-    <div id="app">
+<body class="h-100">
+    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+        @csrf
+    </form>
+    <div id="app" class="h-100">
         <b-navbar toggleable="sm" type="dark" variant="dark">
             <b-navbar-toggle target="nav-text-collapse"></b-navbar-toggle>
 
@@ -45,20 +48,16 @@
                         <b-dropdown-item href="#">Profile</b-dropdown-item>
                         <b-dropdown-item href="{{ route('logout') }}" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">Cerrar Sesión</b-dropdown-item>
-
-                        <b-form id="logout-form" action="{{ route('logout') }}" method="POST">
-                            @csrf
-                        </b-form>
                     </b-nav-item-dropdown>
                     @endguest
                 </b-navbar-nav>
 
             </b-collapse>
         </b-navbar>
-        <br>
+
         @yield('content')
     </div>
+
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
-
 </html>

@@ -6,7 +6,7 @@
             <b-col></b-col>
             <b-col cols="8">
                 <b-card header="Inicio de Sesion" header-tag="header">
-                    <b-form method="POST" action="{{ route('login') }}">
+                    <b-form method="POST"  action="{{ route('login') }}">
                         @csrf
                         <b-form-group label="Correo" label-for="email">
                             <b-form-input id="email" class="@error('email') ? is-invalid @enderror"
