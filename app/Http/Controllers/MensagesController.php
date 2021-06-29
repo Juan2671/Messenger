@@ -9,40 +9,23 @@ use Illuminate\Support\Facades\DB;
 
 class MensagesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(Request $request)
     {
-        $userId = auth()->id();
-        /* dd($userId); */
+        $userId = auth()->id();/* id del usuario  */
+        $contactoid = $request->contacto_id;/* id del contacto con el que tiene el chat */
+
         return Mensajes::select(
         DB::raw("IF(`from_id` = $userId, true, false) as written_by_me"),
         'id',
         'contenido',
         'created_at'
-        )->get();
-
+        )->where(function ($query) use ($contactoid,$userId) {
+            $query->where('from_id',$userId)->where('to_id',$contactoid);
+        })->orWhere(function ($query)  use ($contactoid,$userId){
+            $query->where('from_id',$contactoid)->where('to_id',$userId);
+        })->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
        $mensaje = new Mensajes();

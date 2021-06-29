@@ -10,6 +10,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('buscador-component', require('./components/BuscadorComponent.vue').default);
 Vue.component('conversacion-component', require('./components/ConversacionComponent').default);
 Vue.component('mensajes-component', require('./components/MensajesComponent').default);
+Vue.component('contact-component', require('./components/contctComponent').default);
+Vue.component('seleccionar-component', require('./components/SeleccionarConversacionComponent').default);
+
 const app = new Vue({
     el: '#app',
 });

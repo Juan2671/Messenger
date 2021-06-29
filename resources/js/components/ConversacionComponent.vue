@@ -1,6 +1,6 @@
 <template>
     <b-row class="h-100 my-1 py-1">
-        <b-col cols="8">
+        <b-col cols="8" style="height: 89vh">
             <b-card footer-bg-variant="light" footer-border-variant="dark" class="h-100 w-100" title="Conversacion">
 
                 <mensajes-component v-for="mensage in menssages" :key="mensage.id"
@@ -37,6 +37,9 @@
 </template>
 <script>
     export default {
+        props: {
+            contactoId: Number
+        },
         data() {
             return {
                 menssages: [],
@@ -47,27 +50,37 @@
             this.getMensages();
         },
         methods: {
+            /* Llama todo los mensjaes que tiene el usuario con esa persona */
             getMensages() {
-                axios.get('/api/mensajes')
+                axios.get(`/api/mensajes?contacto_id=${this.contactoId}`)
                     .then((response) => {
                         /* console.log(response.data); */
                         this.menssages = response.data;
                     });
             },
+            /* Registra un nuevo mensaje */
             postMensages() {
                 const params = {
-                    to_id: 2,
+                    to_id: this.contactoId,
                     contenido: this.NuevoMensaje
                 };
+
                 axios.post('/api/mensajes', params)
                     .then((response) => {
                         if (response.data.success) {
                             this.NuevoMensaje = '';
                             this.getMensages();
+                            /* llama el metofo getmesenger para renobar la session de mensaje */
                         }
                     });
             }
         },
+        watch: {
+            contactoId(){
+                console.log(`contactoId => ${this.contactoId}`);
+                this.getMensages();
+            }
+        }
     }
 
 </script>

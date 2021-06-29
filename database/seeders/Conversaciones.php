@@ -27,5 +27,19 @@ class Conversaciones extends Seeder
             'ultimo_mensages' => null,
             'hora_ultimo_mensage' => null,
         ]);
+
+        Conversacion::create([
+            'user_id' => 2,
+            'contacto_id' =>3,
+            'ultimo_mensages' => null,
+            'hora_ultimo_mensage' => null,
+        ]);
+
+        Conversacion::create([
+            'user_id' => 3,
+            'contacto_id' =>2,
+            'ultimo_mensages' => null,
+            'hora_ultimo_mensage' => null,
+        ]);
     }
 }

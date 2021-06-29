@@ -18,6 +18,8 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+/* Auth::routes(['verify' => true]); //Activando la verificación de correo */
+
 Route::get('/api/user','UsuariosController@index');
 
 Route::get('/home', ['as'=>'home','uses'=>'HomeController@index']);

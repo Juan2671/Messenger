@@ -25,5 +25,17 @@ class MensajesSeeder extends Seeder
             'to_id'=>1,
             'contenido'=>'Bine gracias',
         ]);
+
+        Mensajes::create([
+            'from_id'=>2,
+            'to_id'=>3,
+            'contenido'=>'hola como estas',
+        ]);
+
+        Mensajes::create([
+            'from_id'=>3,
+            'to_id'=>2,
+            'contenido'=>'Bine gracias',
+        ]);
     }
 }

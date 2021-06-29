@@ -5,25 +5,24 @@
                 <b-img rounded="circle" blank width="70" height="70" blank-color="#777" alt="img"></b-img>
             </b-col>
             <b-col cols="5" align-self="center" class="d-none d-md-block">
-                <p class="mb-1">{{name}}</p>
-                <p class="text-muted small mb-1">{{ultimomensaje}}</p>
+                <p class="mb-1">{{contactouser.contact_name}}</p>
+                <p class="text-muted small mb-1">{{contactouser.ultimo_mensages}}</p>
             </b-col>
             <b-col cols="4" class="d-none d-md-block">
-                <p class="text-muted-small" align="right" >{{ultimahora}}</p>
+                <p class="text-muted-small" align="right" style="font-size: x-small" >{{contactouser.hora_ultimo_mensage}}</p>
             </b-col>
         </b-row>
     </b-list-group-item>
 </template>
 <script>
     export default {
-        props:[
-            'variant'
-        ],
+        props: {
+            variant: String,
+            contactouser: Object
+        },
         data(){
             return {
-                name:'Juan Esteban',
-                ultimomensaje:'Tú: Hasta mañana',
-                ultimahora:'1:35 pm',
+
             };
         },
 
