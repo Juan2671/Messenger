@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\Conversacion;
 use App\Models\Mensajes;
+use Illuminate\Mail\Events\MessageSent;
 
 class ObservadorMensajes
 {
@@ -27,6 +28,7 @@ class ObservadorMensajes
             $conver->hora_ultimo_mensage = $mensajes->created_at;
             $conver->save();
         }
+        event(new MessageSent($mensajes));
     }
 
 }
